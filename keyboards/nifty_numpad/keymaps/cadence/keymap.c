@@ -19,7 +19,7 @@
 #define STR_PAM           "pam"
 #define STR_MOVE          "m"
 
-// Layers. 
+// Layers.
 // NOTE: LAYER_RGB is defined in nifty_numpad.h
 enum LAYERS {
     LAYER_BL,
@@ -82,18 +82,18 @@ void tap_dance_num_toggle(tap_dance_state_t *state, void *user_data){
 tap_dance_action_t tap_dance_actions[] = {
     [TD_NUM_TOGGLE]  = ACTION_TAP_DANCE_FN(tap_dance_num_toggle),
 
-    [TD_M1]  = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_1),  LCTL(KC_1)),
-    [TD_M2]  = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_2),  LCTL(KC_2)),
-    [TD_M3]  = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_3),  LCTL(KC_3)),
-    [TD_M4]  = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_4),  LCTL(KC_4)),
-    [TD_M5]  = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_5),  LCTL(KC_5)),
-    [TD_M6]  = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_F5), LCTL(KC_F5)),
-    [TD_M7]  = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_F6), LCTL(KC_F6)),
-    [TD_M8]  = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_6),  LCTL(KC_6)),
-    [TD_M9]  = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_7),  LCTL(KC_7)),
-    [TD_M10] = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_8),  LCTL(KC_8)),
-    [TD_M11] = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_9),  LCTL(KC_9)),
-    [TD_M12] = ACTION_TAP_DANCE_DOUBLE(LSFT(KC_0),  LCTL(KC_0))
+    [TD_M1]  = ACTION_TAP_DANCE_DOUBLE(RCS(KC_F1), LCTL(KC_F1)),
+    [TD_M2]  = ACTION_TAP_DANCE_DOUBLE(RCS(KC_F2), LCTL(KC_F2)),
+    [TD_M3]  = ACTION_TAP_DANCE_DOUBLE(RCS(KC_F3), LCTL(KC_F3)),
+    [TD_M4]  = ACTION_TAP_DANCE_DOUBLE(RCS(KC_F4), LCTL(KC_F4)),
+    [TD_M5]  = ACTION_TAP_DANCE_DOUBLE(RCS(KC_F5), LCTL(KC_F5)),
+    [TD_M6]  = ACTION_TAP_DANCE_DOUBLE(RCS(KC_F6), LCTL(KC_F6)),
+    [TD_M7]  = ACTION_TAP_DANCE_DOUBLE(RCS(KC_F7), LCTL(KC_F7)),
+    [TD_M8]  = ACTION_TAP_DANCE_DOUBLE(RCS(KC_F8), LCTL(KC_F8)),
+    [TD_M9]  = ACTION_TAP_DANCE_DOUBLE(RCS(KC_F9), LCTL(KC_F9)),
+    [TD_M10] = ACTION_TAP_DANCE_DOUBLE(RCS(KC_F10), LCTL(KC_F10)),
+    [TD_M11] = ACTION_TAP_DANCE_DOUBLE(RCS(KC_F11), LCTL(KC_F11)),
+    [TD_M12] = ACTION_TAP_DANCE_DOUBLE(RCS(KC_F12), LCTL(KC_F12))
 };
 
 // Setup keymap
@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TD(TD_M1), TD(TD_M12),    LT(LAYER_RGB, (KC_F1)), LALT(LWIN(KC_F)),   KC_F3,   KC_BACKSPACE,
         TD(TD_M2), TD(TD_M11),    TD(TD_NUM_TOGGLE),      KC_PSLS,            KC_PAST, KC_PMNS,
         TD(TD_M3), TD(TD_M10),    KC_P7,                  KC_P8,              KC_P9,   KC_PPLS,
-        TD(TD_M4), TD(TD_M9),     KC_P4,                  KC_P5,              KC_P6,   
+        TD(TD_M4), TD(TD_M9),     KC_P4,                  KC_P5,              KC_P6,
         TD(TD_M5), TD(TD_M8),     KC_P1,                  KC_P2,              KC_P3,   KC_PENT,
         TD(TD_M6), TD(TD_M7),     KC_P0,                                      KC_PDOT
     ),
@@ -143,9 +143,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______,    EDIT_GEN,                EDIT_PLACE, EDIT_ETCH,     EDIT_SHAPE,
         _______, _______,    TD(TD_NUM_TOGGLE),      _______,    _______,       _______,
         _______, _______,    ROUTE,                  SLIDE,      VIA,           KC_F8,
-        _______, _______,    MEASURE,                SHOW,       UPDATE_SHAPES, 
+        _______, _______,    MEASURE,                SHOW,       UPDATE_SHAPES,
         _______, _______,    ROTATE,                 MIRROR,     PAM,           KC_ESC,
-        _______, _______,    MOVE,                               KC_F9     
+        _______, _______,    MOVE,                               KC_F9
     ),
 
     /*
@@ -168,9 +168,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______,    _______, RGB_HUI, RGB_SAI, RGB_VAI,
         _______, _______,    _______, RGB_HUD, RGB_SAD, RGB_VAD,
         _______, _______,    _______, RGB_DEF, RGB_IEF, RGB_SPI,
-        _______, _______,    _______, _______, _______, 
+        _______, _______,    _______, _______, _______,
         _______, _______,    _______, _______, _______, RGB_SPD,
-        _______, _______,    _______,          _______     
+        _______, _______,    _______,          _______
     )
 };
 
@@ -179,7 +179,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     if (layer_state_is(LAYER_CAD) && !rgb_matrix_idle_mode()) {
         // Get a hue that contrasts with current hue
-        uint8_t hue = rgb_matrix_get_hue() + 127; 
+        uint8_t hue = rgb_matrix_get_hue() + 127;
         // Make sure saturation is high enough to distiguish between hues
         uint8_t sat = 255;
         uint8_t val = MIN((uint16_t) rgb_matrix_get_val() + 50, 255);
@@ -268,3 +268,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 };
+
+void matrix_init_user(void) {
+    // Default the start-up state to the CAD layer, rather than the numpad layer
+    layer_on(LAYER_CAD);
+}
